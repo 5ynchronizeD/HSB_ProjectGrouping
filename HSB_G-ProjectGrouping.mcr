@@ -159,7 +159,50 @@ for (int e = 0; e < _Element.length(); e++)
 	groupData.setString(postfixKey, "-");
 	el.setSubMapX(groupChildKey, groupData);
 	//endregion
+	
+	int bDisplayTslFound = FALSE;
+	TslInst arTsl[] = el.tslInst();
+	for ( int i = 0; i < arTsl.length(); i++) {
+		TslInst tsl = arTsl[i];
+		if ( tsl.scriptName() == scriptNameDisplayGrouping) {
+			//_Pt0 = tsl.ptOrg();
+			bDisplayTslFound = TRUE;
+			break;
+		}
+	}
+	if ( ! bDisplayTslFound ) {
+		Vector3d vecUcsX(1,0,0);
+		Vector3d vecUcsY(0,1,0);
+		Beam lstBeams[0];
+		Element lstElements[1];
+		
+		Point3d lstPoints[0];
+		int lstPropInt[0];
+		double lstPropDouble[0];
+		String lstPropString[0];
+		
+		lstElements[0] = el;
+		
+		TslInst tsl;
+		tsl.dbCreate(scriptNameDisplayGrouping, vecUcsX, vecUcsY, lstBeams, lstElements, lstPoints, lstPropInt, lstPropDouble, lstPropString);
+	}
 }
+ 
+//**************************************************
+
+	
+	
+
+//**************************************************
+
+
+
+
+
+
+
+
+
 
 Entity tslInstEntities[] = Group().collectEntities(true, TslInst(), _kModelSpace);
 for (int t=0;t<tslInstEntities.length();t++)
@@ -174,6 +217,7 @@ for (int t=0;t<tslInstEntities.length();t++)
 eraseInstance();
 #End
 #BeginThumbnail
+
 
 
 
@@ -205,7 +249,9 @@ eraseInstance();
         <lst nm="TSLINFO">
           <lst nm="TSLINFO">
             <lst nm="TSLINFO">
-              <lst nm="TSLINFO" />
+              <lst nm="TSLINFO">
+                <lst nm="TSLINFO" />
+              </lst>
             </lst>
           </lst>
         </lst>
